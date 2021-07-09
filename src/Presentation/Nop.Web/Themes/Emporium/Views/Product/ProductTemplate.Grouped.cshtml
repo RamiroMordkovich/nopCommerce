@@ -38,6 +38,10 @@
         Html.AddHeadCustomParts("<meta property=\"og:image:url\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
         Html.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
         Html.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:product:price:amount\" content=\"" + Html.Encode(Model.ProductPrice.PriceValue).Replace(",", ".") + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:product:price:currency\" content=\"" + Html.Encode(Model.ProductPrice.CurrencyCode) + "\" />");
+
+        Html.AddHeadCustomParts("<meta property=\"og:availability\" content=\"in stock" + "\" />");
     }
 
     //Twitter META tags
