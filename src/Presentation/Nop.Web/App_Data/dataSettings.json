@@ -1,5 +1,5 @@
 ﻿{
-  "DataProvider": "sqlserver",
-  "DataConnectionString": "Data Source=pygnus.zapto.org;Initial Catalog=WebNutriiconTESTEO;Persist Security Info=True;User ID=sqlNutricion;Password=Laplatarugby6;",
+  "DataProvider": "",
+  "DataConnectionString": "",
   "RawDataSettings": {}
 }
