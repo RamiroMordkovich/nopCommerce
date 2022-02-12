@@ -305,6 +305,8 @@ namespace Nop.Web.Models.Catalog
             public bool CustomerEntersQty { get; set; }
 
             public int Quantity { get; set; }
+
+            public bool WithStock { get; set; }
         }
 
         #endregion

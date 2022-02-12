@@ -45,7 +45,9 @@
                                             attributeValue.Name :
                                             T("Products.ProductAttributes.PriceAdjustment", attributeValue.Name, attributeValue.PriceAdjustment,
                                                 attributeValue.CustomerEntersQty ? T("Products.ProductAttributes.PriceAdjustment.PerItem").Text : string.Empty).Text;
-                                        <option selected="@attributeValue.IsPreSelected" value="@attributeValue.Id">@attributeName</option>
+
+                                        var title = attributeValue.WithStock ? string.Empty : " - Sin Stock";
+                                        <option selected="@attributeValue.IsPreSelected" value="@attributeValue.Id" title="@title">@attributeName</option>
                                     }
                                 </select>
                                 foreach (var attributeValue in attribute.Values.Where(value => value.CustomerEntersQty))
@@ -262,10 +264,13 @@
                                         var attributeName = string.IsNullOrEmpty(attributeValue.PriceAdjustment) ?
                                             attributeValue.Name :
                                             T("Products.ProductAttributes.PriceAdjustment", attributeValue.Name, attributeValue.PriceAdjustment, string.Empty).Text;
+
+                                        attributeName = attributeValue.WithStock ? attributeName : $"{attributeName}- Sin Stock";
+                                        var opacity = attributeValue.WithStock ? string.Empty : "opacity: .5;";
                                         <li @(attributeValue.IsPreSelected ? @Html.Raw(" class=\"selected-value\"") : null)>
                                             <label for="@(controlId)_@(attributeValue.Id)">
                                                 <span class="attribute-square-container" title="@attributeName">
-                                                    <span class="attribute-square" style="background-color:@(attributeValue.ColorSquaresRgb);">&nbsp;</span>
+                                                    <span class="attribute-square" style="background-color:@(attributeValue.ColorSquaresRgb);@opacity">&nbsp;</span>
                                                 </span>
                                                 <input id="@(controlId)_@(attributeValue.Id)" type="radio" name="@(controlId)" value="@attributeValue.Id" checked="@attributeValue.IsPreSelected"
                                                        @(attribute.Values.Any(value => value.CustomerEntersQty) ? Html.Raw($"onclick=\"showHideRadioQuantity('{controlId}')\"") : null)/>

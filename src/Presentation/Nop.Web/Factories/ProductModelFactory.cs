@@ -766,6 +766,17 @@ namespace Nop.Web.Factories
                             CustomerEntersQty = attributeValue.CustomerEntersQty,
                             Quantity = attributeValue.Quantity
                         };
+
+                        try
+                        {
+                            var result = product.ProductAttributeCombinations.FirstOrDefault(x => x.AttributesXml.Contains($"<Attributes><ProductAttribute ID=>"));
+                            valueModel.WithStock = result.StockQuantity > 0;
+                        }
+                        catch
+                        {
+                            valueModel.WithStock = false;
+                        }
+
                         attributeModel.Values.Add(valueModel);
 
                         //display price if allowed
